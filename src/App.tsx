@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./screens/Login";
 import Home from "./screens/Home";
+import ThemeToggle from "./screens/ThemeToggle";
+
 import NotFound from "./screens/NotFound";
 import { useReactiveVar } from "@apollo/client";
 import { isLoggedInVar, darkModeVar } from "./apollo";
@@ -15,6 +17,7 @@ function App() {
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <GlobalStyles />
+      <ThemeToggle />
       <Router>
         <Routes>
           {/* 매치되는 것 하나만 보내줌 */}
