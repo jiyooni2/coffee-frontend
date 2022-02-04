@@ -1,0 +1,54 @@
+Setup
+    react helmet
+        title 동적 변경
+
+    apollo client
+
+    react-fontawesome
+        icon
+
+    npm i styled-component
+    react-hook-form
+    react-router-dom
+    apollo/client graphql
+    react-helmet-async
+    react-fontawesome
+
+
+Router,Authentication,Architecture,styles
+
+add Dark mode at first.
+
+url에 맞는 component를 연결
+url 패턴매칭 여부를 위에서부터 아래로 매치되는지 여부를 보고 보내줌
+    React-router-dom v6부터 exact 기본 설정
+
+Browser Router는 deploy할 때 처리가 필요
+
+로그인 여부에 따라 아예 다른 컴포넌트를 보여주는 등 여러가지 고려
+
+element에는 1개의 element만 들어가야함 2개 넣고 싶으면 <></>로 묶기
+
+
+TS interface
+https://poiemaweb.com/typescript-interface
+
+
+function Login(props: ILogin) {
+  return <h1>Login</h1>;
+}
+
+props를 {setIsLoggedIn}, 편히 쓸수 있음
+
+apollo client
+    reactive variables 포함
+    graphql을 사용하는 react mixin
+    backend와 상호작용
+
+    reactive variable 아무데서나 바꿀 수 있음
+        trigger rendering, that listening the variable
+        (variable : const isLoggedIn = useReactiveVar(isLoggedInVar))
+        (listening the "isLoggedIn" var )
+        const isLoggedIn = useReactiveVar(isLoggedInVar);
+
+        
