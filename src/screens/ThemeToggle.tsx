@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { darkModeVar } from "../apollo";
+import { faToggleOn, faToggleOff } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Container = styled.div``;
 
@@ -10,14 +12,18 @@ const Button = styled.button`
 function ThemeToggle() {
   return (
     <Container>
-      <Button
+      <div
         onClick={() => {
           const old = darkModeVar();
           darkModeVar(!old);
         }}
       >
-        {darkModeVar() ? "OFF" : "ON"}
-      </Button>
+        {darkModeVar() ? (
+          <FontAwesomeIcon icon={faToggleOn} size="2x" />
+        ) : (
+          <FontAwesomeIcon icon={faToggleOff} size="2x" />
+        )}
+      </div>
     </Container>
   );
 }
