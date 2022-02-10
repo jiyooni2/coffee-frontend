@@ -5,7 +5,8 @@ import Login from "./screens/Login";
 import Home from "./screens/Home";
 import ThemeToggle from "./screens/ThemeToggle";
 import SignUp from "./screens/SignUp";
-
+import Add from "./screens/Add";
+import Edit from "./screens/Edit";
 import NotFound from "./screens/NotFound";
 import { useReactiveVar } from "@apollo/client";
 import { isLoggedInVar, darkModeVar } from "./apollo";
@@ -30,14 +31,17 @@ function App() {
           <Router>
             <Routes>
               {/* 매치되는 것 하나만 보내줌 */}
+              <Route path={routes.home} element={<Home />} />
               <Route
-                path={routes.home}
+                path={routes.login}
                 element={<>{isLoggedIn ? <Home /> : <Login />}</>}
               />
               <Route
                 path={routes.signUp}
-                element={!isLoggedIn ? <SignUp /> : null}
+                element={!isLoggedIn ? <SignUp /> : <Home />}
               />
+              <Route path={routes.createShop} element={<Add />} />
+              <Route path={routes.editShop} element={<Edit />} />
               {/* 모두 매치 안되면 여기에서 매칭 */}
               <Route path="*" element={<NotFound />} />
             </Routes>
