@@ -5,6 +5,8 @@ import styled from "styled-components";
 import { useLocation, useNavigate } from "react-router-dom";
 import routes from "../routes";
 import { Link } from "react-router-dom";
+import { isJSDocUnknownTag } from "typescript";
+import jwtDecode from "jwt-decode";
 
 const SEE_COFFEE_SHOPS_MUTATION = gql`
   query seeCoffeeShops($page: Int!) {
@@ -15,6 +17,7 @@ const SEE_COFFEE_SHOPS_MUTATION = gql`
       longitude
       user {
         username
+        id
       }
       photos {
         url
@@ -26,17 +29,9 @@ const SEE_COFFEE_SHOPS_MUTATION = gql`
   }
 `;
 
-interface IShop {
-  id: string;
-  name: string;
-  latitude: string;
-  longitude: string;
-  user: { name: string };
-  photos: { url: string };
-  categories: { name: string };
-}
-
 const Container = styled.div`
+  padding: 20px 20px;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
 `;
@@ -56,6 +51,10 @@ interface LocationState {
   state: string;
 }
 
+interface IDecoded {
+  id: string;
+}
+
 function Home() {
   const location: any = useLocation();
 
@@ -66,12 +65,15 @@ function Home() {
     },
   });
 
-  console.log(data);
+  let id = "";
+  const token = localStorage.getItem("token");
+  if (token) {
+    const decoded: IDecoded = jwtDecode(token);
+    id = decoded.id;
+  }
 
   return (
     <div>
-      <button onClick={logUserOut}>Logout</button>
-
       {location?.state?.message}
 
       {loading ? (
@@ -85,7 +87,9 @@ function Home() {
               <span>longitude: {shop.longitude}</span>
               <span>user: {shop.user?.username}</span>
               <span>photo: {shop.photos[0]?.url}</span>
-              <Link to={`/shop/${shop.id}`}>Edit</Link>
+              {shop.user?.id == id ? (
+                <Link to={`/shop/${shop.id}`}>Edit</Link>
+              ) : null}
             </HomeBox>
           ))}
         </Container>

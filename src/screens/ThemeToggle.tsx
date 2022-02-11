@@ -19,9 +19,9 @@ function ThemeToggle() {
         }}
       >
         {darkModeVar() ? (
-          <FontAwesomeIcon icon={faToggleOn} size="2x" />
+          <FontAwesomeIcon icon={faToggleOn} size="1x" />
         ) : (
-          <FontAwesomeIcon icon={faToggleOff} size="2x" />
+          <FontAwesomeIcon icon={faToggleOff} size="1x" />
         )}
       </div>
     </Container>

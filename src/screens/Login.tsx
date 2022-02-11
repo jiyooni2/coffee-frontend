@@ -14,6 +14,7 @@ import FormError from "../components/auth/FormError";
 import { gql, useMutation } from "@apollo/client";
 import { logUserIn } from "../apollo";
 import { useLocation } from "react-router-dom";
+import { isJSDocUnknownTag } from "typescript";
 
 const FaceBookLogin = styled.div`
   color: #385285;
@@ -97,10 +98,6 @@ function Login() {
     login({
       variables: { username, password },
     });
-  };
-
-  const onSubmitInvalid: SubmitErrorHandler<FormValues> = (data) => {
-    console.log(data);
   };
 
   const clearLoginError = () => {

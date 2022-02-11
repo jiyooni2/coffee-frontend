@@ -84,7 +84,7 @@ interface IData {
   };
 }
 
-function Add() {
+function Edit() {
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -215,4 +215,4 @@ function Add() {
   );
 }
 
-export default Add;
+export default Edit;
