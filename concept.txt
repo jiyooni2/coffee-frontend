@@ -52,3 +52,19 @@ apollo client
         const isLoggedIn = useReactiveVar(isLoggedInVar);
 
         
+Deployment
+    Netlify
+    그냥 그대로 따라가면 됨, github 연결하고
+    apollo에서 URL 수정(NODE_ENV에 따라 백엔드 다르게)
+    build 명령어 CI= npm run build 로 수정
+
+    새로고침하면 page not found
+    netlify에서 react app으로 리다이렉션 필요
+    설정 안하면, netlify router가 route를 다룸
+    앱으로 모든 url을 받아서 react로 보내는 게 목표
+    react router가 route를 다룰 수 있게
+
+    public에 _redirect 파일 만들어서 셋팅 
+
+    github에 push하면 deploy 자동으로 다시 함
+

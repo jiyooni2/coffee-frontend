@@ -25,7 +25,10 @@ export const logUserOut = () => {
 export const darkModeVar = makeVar(false);
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:4000/graphql",
+  uri:
+    process.env.NODE_ENV === "production"
+      ? "https://nomadcoffee-page.herokuapp.com/graphql"
+      : "http://localhost:4000/graphql",
 });
 
 export const client = new ApolloClient({
